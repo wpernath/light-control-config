@@ -10,9 +10,9 @@ commonLabels:
 
 # replace the image tag of the container with latest
 images:
-- name: quay.io/wpernath/light-control:latest
-  newName: quay.io/wpernath/light-control
-  newTag: v1.0.0-beta3
+- digest: sha256:c72f5cf62d47e66e9c6745f34d0659bdb0052fe2c8581cbec82e8d44a9a9938f
+  name: quay.io/wpernath/light-control:latest
+  newName: quay.io/wpernath/light-control:latest
 
 # generate a configmap 
 configMapGenerator:
@@ -20,23 +20,13 @@ configMapGenerator:
   - APP_GREETING=We are in DEVELOPMENT mode
   name: app-config
 
-patches:
 # This patch provides the name of the namespace into the env-value of the Job
 # This is needed because we want to call the target rest service of person-service
 # which is: light-control.$NAMESPACE.svc:8080
+patches:
 - patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/env/0/value
       value: light-dev
   target:
     kind: Job
-
-# This patch is not necessary anymore, as we are not using nameprefix here.      
-# this patch needs to be done, because kustomize does not change 
-# the route target service name
-#- patch: |-
-#    - op: replace
-#      path: /spec/to/name
-#      value: dev-light-control
-# target:
-#   kind: Route
