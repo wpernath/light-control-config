@@ -1,0 +1,52 @@
+#namePrefix: stage-  
+commonLabels:
+  variant: stage
+
+bases:
+- ../../base
+
+# in stage we have 2 replicas
+replicas:
+- name: light-control
+  count: 2
+
+# replace the image tag of the container with stage
+images:
+  - name: quay.io/wpernath/light-control:latest
+    newName: quay.io/wpernath/light-control
+    newTag: v1.0.0-test
+
+# generate a configmap 
+configMapGenerator:
+  - name: app-config
+    literals:
+      - APP_GREETING=We are in STAGING mode
+
+# apply some patches
+patches:
+  # apply health checks to deployment
+  - path: apply-health-checks.yaml
+    target:
+      version: v1
+      kind: Deployment
+      name: light-control
+
+# This patch provides the name of the namespace into the env-value of the Job
+# This is needed because we want to call the target rest service of light-control
+# which is: light-control.$NAMESPACE.svc:8080
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: light-stage
+    target:
+      kind: Job
+
+# this patch needs to be done, because kustomize does not change 
+# the route target service name
+#  - patch: |-
+#      - op: replace
+#        path: /spec/to/name
+#        value: stage-light-control
+#    target:
+#      kind: Route
+

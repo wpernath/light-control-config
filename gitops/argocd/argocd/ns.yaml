@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: "DEV"
+  labels:
+    kubernetes.io/metadata.name: light-dev
+  name: light-dev
+spec:
+  finalizers:
+  - kubernetes
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: "STAGE"
+  labels:
+    kubernetes.io/metadata.name: light-stage
+  name: light-stage
+spec:
+  finalizers:
+  - kubernetes

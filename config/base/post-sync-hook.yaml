@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: post-sync-run
+  name: my-final-run
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: post-install-job
+          env:
+            - name: NAMESPACE
+              value: light-dev
+          image: "quay.io/wpernath/kustomize-ubi:v4.4.1"              
+          command: 
+          - /bin/sh
+          - -c 
+          - |
+            echo "WELCOME TO the post installation hook for ArgoCD "
+            echo "-------------------------------------------------"
+            echo "We are now going to fill the database by calling "
+            echo "the corresponding REST service"
+            
+            
