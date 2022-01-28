@@ -10,7 +10,7 @@ commonLabels:
 
 # replace the image tag of the container with latest
 images:
-- digest: sha256:9d17027b5c7db476c437cbe7e4ac08d27906aa0f64dab3b67725a4f8165063ec
+- digest: sha256:597bf779326e3dc1d2275a0a03dc16488128dc9f7a80aefe74cd3f1e2850c872
   name: quay.io/wpernath/light-control:latest
   newName: quay.io/wpernath/light-control:latest
 
