@@ -18,6 +18,7 @@ images:
 configMapGenerator:
 - literals:
   - APP_GREETING=We are in DEVELOPMENT mode
+  - WEATHER_API_KEY=<change-me>
   name: app-config
 
 # This patch provides the name of the namespace into the env-value of the Job

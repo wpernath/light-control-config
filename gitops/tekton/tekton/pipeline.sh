@@ -189,7 +189,7 @@ EOF
 
   # apply all tekton related setup
   if [[ "$FORCE_SETUP" == "true" ]]; then
-    info "Creating demo setup by calling $SCRIPT_DIR/kustomization.yaml"
+    info "Creating light-control setup by calling $SCRIPT_DIR/kustomization.yaml"
     oc apply -k "$SCRIPT_DIR"
 
     while :; do
@@ -198,7 +198,7 @@ EOF
     done
   fi
 
-  oc apply -f /tmp/secret.yaml -n book-ci
+  oc apply -f /tmp/secret.yaml -n light-ci
 }
 
 
