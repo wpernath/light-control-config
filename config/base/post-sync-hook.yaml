@@ -24,5 +24,7 @@ spec:
             echo "-------------------------------------------------"
             echo "We are now going to fill the database by calling "
             echo "the corresponding REST service"
-            
+            #
+            SERVICE_URL=light-control.${NAMESPACE}.svc:8080/api/bridge/init 
+            http --ignore-stdin --json POST ${SERVICE_URL} 
             
