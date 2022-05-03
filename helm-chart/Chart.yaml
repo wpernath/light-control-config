@@ -1,0 +1,16 @@
+apiVersion: v2
+name: light-control
+description: A helm chart to install light-control including all dependencies on any ingress enabled kubernetes cluster.
+home: https://github.com/wpernath/light-control
+type: application
+version: 0.0.1
+appVersion: "v1.0.0"
+sources:
+    - https://github.com/wpernath/light-control
+dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.1.3
+maintainers:
+    - name: Wanja Pernath
+      email: wpernath@redhat.com

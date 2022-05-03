@@ -1,0 +1,18 @@
+# Release NOTES 
+- Chart name: {{ .Chart.Name }}
+- Chart description: {{ .Chart.Description }}
+- Chart version: {{ .Chart.Version }}
+- App version: {{ .Chart.AppVersion }}
+- Release name: {{ .Release.Name }}
+- Release version: {{ .Release.Release }}
+- Release Namespace: {{ .Release.Namespace }}
+
+
+## To learn more about this relase
+```bash
+$ helm list
+$ helm history light-control
+```
+
+## Version history
+- 0.0.1 Initial release
